@@ -21,7 +21,6 @@ def proof_of_work(last_proof):
     - Use the same method to generate SHA-256 hashes as the examples in class
     - Note:  We are adding the hash of the last proof to a number/nonce for the new proof
     """
-
     start = timer()
 
     print("\nSearching for next proof")
@@ -41,7 +40,6 @@ def valid_proof(last_proof, proof):
     """
     Validates the Proof:  Multi-ouroborus:  Do the last six characters of
     the hash of the last proof match the first six characters of the proof?
-
     IE:  last_hash: ...AE9123456, new hash 123456888...
     """
     # Refactor for my brain to understand...pass in last proof and hash it inside this function rather 
