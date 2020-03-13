@@ -46,11 +46,14 @@ def valid_proof(last_hash, proof):
     IE:  last_hash: ...AE9123456, new hash 123456E88...
     """
 
-    # Either pass in last proof and hash here, or hash outside and pass it in
+    # Either pass in last proof and hash here, or hash outside and pass it in / Done above
     # Hash current proof (second arg)
+    new_proof = hashlib.sha256(proof).hexdigest()
+
+
     # Compare the first six digits of last_hash with the first six digits of new hash
     # If a match, return true, otherwise return false
-    pass
+    return last_hash[:6] == new_proof[-6:]
 
 
 if __name__ == '__main__':
