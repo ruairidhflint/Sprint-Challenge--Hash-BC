@@ -22,10 +22,10 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
+    proof = str(0)
 
     # Hash last_proof
-    last_proof_hashed = hashlib.sha256(last_proof.encode()).hexdigest()
+    last_proof_hashed = hashlib.sha256(str(last_proof).encode()).hexdigest()
     # Starting with zero, pass the new proof into valid_proof function.
 
     # If the function returns false (likely), do something to create a new proof.
@@ -34,7 +34,7 @@ def proof_of_work(last_proof):
     while valid_proof(last_proof_hashed, proof) is False:
         # Random int? Random bits? Random bigint?
         # This needs to be a more random operation:
-        proof = random.random() * 100000
+        proof = str(random.random() * 100000)
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
