@@ -34,7 +34,8 @@ def proof_of_work(last_proof):
     while valid_proof(last_proof_hashed, proof) is False:
         # Random int? Random bits? Random bigint?
         # This needs to be a more random operation:
-        proof = str(random.random() * 100000)
+        # proof = str(random.random() * 100000)
+        proof = str(random.getrandbits(32))
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -55,6 +56,9 @@ def valid_proof(last_hash, proof):
 
     # Compare the first six digits of last_hash with the first six digits of new hash
     # If a match, return true, otherwise return false
+    if last_hash[:6] == new_proof[-6:]:
+        print('last hash', last_hash)
+        print('new hash', new_proof)
     return last_hash[:6] == new_proof[-6:]
 
 
@@ -63,8 +67,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         node = sys.argv[1]
     else:
-        # node = "https://lambda-coin.herokuapp.com/api"
-        node = "https://lambda-coin-test-1.herokuapp.com/api"
+        node = "https://lambda-coin.herokuapp.com/api"
+        # node = "https://lambda-coin-test-1.herokuapp.com/api"
 
     coins_mined = 0
 
