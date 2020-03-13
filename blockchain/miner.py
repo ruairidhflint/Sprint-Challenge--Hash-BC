@@ -25,7 +25,7 @@ def proof_of_work(last_proof):
     proof = 0
 
     # Hash last_proof
-    last_proof_hashed = hashlib.sha256(last_proof).encode().hexdigest()
+    last_proof_hashed = hashlib.sha256(last_proof.encode()).hexdigest()
     # Starting with zero, pass the new proof into valid_proof function.
 
     # If the function returns false (likely), do something to create a new proof.
@@ -51,7 +51,7 @@ def valid_proof(last_hash, proof):
 
     # Either pass in last proof and hash here, or hash outside and pass it in / Done above
     # Hash current proof (second arg)
-    new_proof = hashlib.sha256(proof).encode().hexdigest()
+    new_proof = hashlib.sha256(proof.encode()).hexdigest()
 
     # Compare the first six digits of last_hash with the first six digits of new hash
     # If a match, return true, otherwise return false
