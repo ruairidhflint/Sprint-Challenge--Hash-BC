@@ -5,6 +5,9 @@ import sys
 import requests
 import hashlib
 
+import os
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+
 
 def proof_of_work(last_proof):
     """
@@ -22,7 +25,7 @@ def proof_of_work(last_proof):
     proof = 0
 
     # Hash last_proof
-    last_proof_hashed = hashlib.sha256(last_proof).hexdigest()
+    last_proof_hashed = hashlib.sha256(last_proof).encode().hexdigest()
     # Starting with zero, pass the new proof into valid_proof function.
 
     # If the function returns false (likely), do something to create a new proof.
@@ -48,7 +51,7 @@ def valid_proof(last_hash, proof):
 
     # Either pass in last proof and hash here, or hash outside and pass it in / Done above
     # Hash current proof (second arg)
-    new_proof = hashlib.sha256(proof).hexdigest()
+    new_proof = hashlib.sha256(proof).encode().hexdigest()
 
     # Compare the first six digits of last_hash with the first six digits of new hash
     # If a match, return true, otherwise return false
@@ -66,7 +69,8 @@ if __name__ == '__main__':
     coins_mined = 0
 
     # Load or create ID
-    f = open("my_id.txt", "r")
+    my_file = os.path.join(THIS_FOLDER, 'my_id.txt')
+    f = open(my_file, "r")
     id = f.read()
     print("ID is", id)
     f.close()
