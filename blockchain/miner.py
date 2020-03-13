@@ -30,8 +30,8 @@ def proof_of_work(last_proof):
     # Continue passing in random numbers until we hit a return value of true and then return said value
     while valid_proof(last_proof_hashed, proof) is False:
         # Random int? Random bits? Random bigint?
-        # This needs to be a more random operation: 
-        proof += 1
+        # This needs to be a more random operation:
+        proof = random.random() * 100000
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -49,7 +49,6 @@ def valid_proof(last_hash, proof):
     # Either pass in last proof and hash here, or hash outside and pass it in / Done above
     # Hash current proof (second arg)
     new_proof = hashlib.sha256(proof).hexdigest()
-
 
     # Compare the first six digits of last_hash with the first six digits of new hash
     # If a match, return true, otherwise return false
