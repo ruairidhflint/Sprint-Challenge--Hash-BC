@@ -18,8 +18,18 @@ def reconstruct_trip(tickets, length):
 
     # Insert all tickets into the hash table with starting point as the key and destination
     # as the value
+    for item in tickets:
+        hash_table_insert(hashtable, item.source, item.destination)
+
+    # set initial values of iterations and destination
+    iterations = 0
+    current_value = "NONE"
 
     # Loop through tickets (?) for the correct length, retrieving values and storing them in the route array until 'None" is reached
     # Correct length will have to ignore the initial None value and be one short to ignore the final None value, as per the spec
-    
-    pass
+    while iterations < length - 1:
+        current_value = hash_table_retrieve(hashtable, current_value)
+        route[iterations] = current_value
+        iterations += 1
+
+    return route
